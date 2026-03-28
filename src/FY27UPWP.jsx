@@ -4,10 +4,11 @@ import './FY27UPWP.css';
 const FY27UPWP = () => {
   const [activeSection, setActiveSection] = useState('accomplishments');
   const [activeSubSection, setActiveSubSection] = useState('planning-documents');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navTo = (section, sub) => {
     setActiveSection(section);
-    // If we're just switching main section without specific sub, 
+    // If we're just switching main section without specific sub,
     // we take the first sub-section of that new section.
     if (!sub) {
       const defaultSubs = {
@@ -20,6 +21,8 @@ const FY27UPWP = () => {
     } else {
       setActiveSubSection(sub);
     }
+    // Close mobile menu when selecting a category
+    setIsMobileMenuOpen(false);
   };
 
   const sections = {
@@ -355,29 +358,38 @@ const FY27UPWP = () => {
           <span className="upwp-logo-large">MPO</span>
         </div>
         <div className="upwp-cert-title">Draft FY27 UPWP</div>
+        <button 
+          className={`upwp-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </header>
 
       {/* PILL NAVIGATION BAR */}
       <nav className="upwp-nav-bar">
-        <button 
+        <button
           className={`upwp-nav-pill ${activeSection === 'accomplishments' ? 'active' : ''}`}
           onClick={() => navTo('accomplishments', null)}
         >
           1. Accomplishments
         </button>
-        <button 
+        <button
           className={`upwp-nav-pill ${activeSection === 'priorities' ? 'active' : ''}`}
           onClick={() => navTo('priorities', null)}
         >
           2. Priorities
         </button>
-        <button 
+        <button
           className={`upwp-nav-pill ${activeSection === 'fund_management' ? 'active' : ''}`}
           onClick={() => navTo('fund_management', null)}
         >
           3. Fund Management
         </button>
-        <button 
+        <button
           className={`upwp-nav-pill ${activeSection === 'allocations' ? 'active' : ''}`}
           onClick={() => navTo('allocations', null)}
         >
@@ -386,8 +398,14 @@ const FY27UPWP = () => {
       </nav>
 
       <div className="upwp-layout-body">
+        {/* Sidebar overlay for mobile */}
+        <div 
+          className={`upwp-sidebar-overlay ${isMobileMenuOpen ? 'active' : ''}`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        ></div>
+
         {/* SIDE NAV - CATEGORIES */}
-        <aside className="upwp-sidebar">
+        <aside className={`upwp-sidebar ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           <div className="upwp-sidebar-section-title">CATEGORIES</div>
           
           {activeSection === 'accomplishments' && (
