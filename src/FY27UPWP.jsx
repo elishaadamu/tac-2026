@@ -294,7 +294,9 @@ const FY27UPWP = () => {
                 <header className="upwp-section-header"><h3 className="upwp-section-title">Certification Review Update</h3></header>
                 <div className="upwp-card">
                   <h4 style={{color: 'var(--primary-yellow)', marginBottom: '1rem'}}>10) Certification Review Update Information</h4>
-                  <p style={{color: 'var(--text-dim)', lineHeight: '1.6'}}>Program evaluation and compliance tracking for regional planning processes.</p>
+                  <div className="upwp-highlight-box" style={{backgroundColor: 'rgba(245, 158, 11, 0.05)', borderColor: 'var(--primary-yellow)'}}>
+                    <p style={{color: 'var(--text-main)', margin: 0}}>Federal certification review of the metropolitan transportation planning process to ensure compliance with federal regulations.</p>
+                  </div>
                 </div>
               </div>
             ),
@@ -303,11 +305,17 @@ const FY27UPWP = () => {
                 <header className="upwp-section-header"><h3 className="upwp-section-title">Public Comment Period</h3></header>
                 <div className="upwp-card">
                   <h4 style={{color: 'var(--primary-yellow)', marginBottom: '1.5rem'}}>11) Draft MTIP & Regional Conformity Report – Att. 5 Information</h4>
-                  <ul className="upwp-list">
-                    <li className="upwp-list-item">The Public Comment Period started <strong>March 13, 2026</strong>, and ends <strong>April 12, 2026</strong></li>
-                    <li className="upwp-list-item">TCAMPO staff will host a <strong>Public Meeting</strong> at the <strong>Petersburg Library</strong> on April 6, 2026, from 5:00 – 6:30 pm.</li>
-                    <li className="upwp-list-item">See <strong>Attachment 5</strong> for the Public Comment Period Fact Sheet.</li>
-                  </ul>
+                  <div className="upwp-highlight-box" style={{marginBottom: '1.5rem'}}>
+                    a) The Public Comment Period started <strong>March 13, 2026</strong>, and ends <strong>April 12, 2026</strong>
+                  </div>
+                  <div style={{paddingLeft: '2.5rem'}}>
+                    <div style={{marginBottom: '1rem', color: 'var(--text-main)', lineHeight: '1.5'}}>
+                      i) <strong>Public Meeting</strong> at the <strong>Petersburg Library</strong> on April 6, 2026, (5:00 – 6:30 pm)
+                    </div>
+                    <div style={{color: 'var(--text-main)', lineHeight: '1.5'}}>
+                      ii) See <strong>Attachment 5</strong>, linked above, for the Public Comment Period Fact Sheet.
+                    </div>
+                  </div>
                 </div>
               </div>
             )
