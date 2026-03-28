@@ -11,7 +11,7 @@ const FY27UPWP = () => {
     if (!sub) {
       const defaultSubs = {
         upwp: 'accomplishments',
-        allocation: 'stbg',
+        allocation: 'programs',
         scoring: 'scores',
         info: 'general'
       };
@@ -21,7 +21,8 @@ const FY27UPWP = () => {
       if (newSub === 'accomplishments') setActiveCategory('planning-documents');
       else if (newSub === 'priorities') setActiveCategory('long-range-planning');
       else if (newSub === 'fund_management') setActiveCategory('revenues');
-      else setActiveCategory(Object.keys(sections[section].subSections[newSub].categories || {})[0] || 'STBG/CMAQ Scoring');
+      else if (newSub === 'programs') setActiveCategory('STBG');
+      else setActiveCategory(Object.keys(sections[section].subSections[newSub].categories || {})[0] || '');
     } else {
       setActiveSubSection(sub);
       if (!category) {
@@ -29,9 +30,7 @@ const FY27UPWP = () => {
           accomplishments: 'planning-documents',
           priorities: 'long-range-planning',
           fund_management: 'revenues',
-          stbg: 'STBG',
-          cmaq: 'CMAQ',
-          crp: 'CRP',
+          programs: 'STBG',
           scores: 'STBG/CMAQ Scoring',
           general: 'Certification-Review'
         };
@@ -186,8 +185,8 @@ const FY27UPWP = () => {
     allocation: {
       title: 'STBG Allocation Plan',
       subSections: {
-        stbg: {
-          title: 'STBG',
+        programs: {
+          title: 'Allocation Programs',
           categories: {
             'STBG': (
               <div className="upwp-section">
@@ -195,8 +194,7 @@ const FY27UPWP = () => {
                 <div className="upwp-card">
                   <p style={{marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--text-main)'}}>
                     Prohibits discrimination based upon race, color creed, national origin, sex, or age in employment 
-                    or business opportunity. Prohibits discrimination based upon race, color creed, national origin, 
-                    sex, or age in employment or business opportunity.
+                    or business opportunity.
                   </p>
                   <div className="upwp-table-container">
                     <table className="upwp-table">
@@ -206,20 +204,14 @@ const FY27UPWP = () => {
                   </div>
                 </div>
               </div>
-            )
-          }
-        },
-        cmaq: {
-          title: 'CMAQ',
-          categories: {
+            ),
             'CMAQ': (
               <div className="upwp-section">
                 <header className="upwp-section-header"><h3 className="upwp-section-title">CMAQ (Congestion Mitigation and Air Quality Improvement Program)</h3></header>
                 <div className="upwp-card">
                   <p style={{marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--text-main)'}}>
                     Prohibits discrimination based upon race, color creed, national origin, sex, or age in employment 
-                    or business opportunity. Prohibits discrimination based upon race, color creed, national origin, 
-                    sex, or age in employment or business opportunity.
+                    or business opportunity.
                   </p>
                   <div className="upwp-table-container">
                     <table className="upwp-table">
@@ -229,20 +221,14 @@ const FY27UPWP = () => {
                   </div>
                 </div>
               </div>
-            )
-          }
-        },
-        crp: {
-          title: 'CRP',
-          categories: {
+            ),
             'CRP': (
               <div className="upwp-section">
                 <header className="upwp-section-header"><h3 className="upwp-section-title">CRP (Carbon Reduction Program)</h3></header>
                 <div className="upwp-card">
                   <p style={{marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--text-main)'}}>
                     Prohibits discrimination based upon race, color creed, national origin, sex, or age in employment 
-                    or business opportunity. Prohibits discrimination based upon race, color creed, national origin, 
-                    sex, or age in employment or business opportunity.
+                    or business opportunity.
                   </p>
                   <div className="upwp-table-container">
                     <table className="upwp-table">
@@ -338,7 +324,7 @@ const FY27UPWP = () => {
           <span className="upwp-logo-small">Tri-Cities Area</span>
           <span className="upwp-logo-large">MPO</span>
         </div>
-        <div className="upwp-cert-title">Draft FY27 UPWP Dashboard</div>
+        <div className="upwp-cert-title">APRIL 2026 TAC</div>
       </header>
 
       {/* LEVEL 1: MAIN TABS */}
@@ -348,30 +334,32 @@ const FY27UPWP = () => {
         ))}
       </nav>
 
-      {/* LEVEL 2: SUB TABS */}
-      <nav className="upwp-sub-nav-bar" style={{
-        display: 'flex', justifyContent: 'center', gap: '0.5rem', padding: '0.5rem', backgroundColor: '#111', borderBottom: '1px solid rgba(255,255,255,0.05)'
-      }}>
-        {Object.keys(sections[activeSection].subSections).map(sub => (
-          <button 
-            key={sub}
-            onClick={() => navTo(activeSection, sub)}
-            style={{
-              padding: '0.4rem 1.25rem', borderRadius: '0.25rem', border: 'none',
-              backgroundColor: activeSubSection === sub ? 'var(--primary-red)' : 'transparent',
-              color: activeSubSection === sub ? 'white' : 'rgba(255,255,255,0.6)',
-              fontSize: '0.85rem', fontWeight: '800', textTransform: 'uppercase', cursor: 'pointer', transition: 'all 0.2s'
-            }}
-          >
-            {sections[activeSection].subSections[sub].title}
-          </button>
-        ))}
-      </nav>
+      {/* LEVEL 2: SUB TABS (only show if multiple sub-sections exist) */}
+      {Object.keys(sections[activeSection].subSections).length > 1 && (
+        <nav className="upwp-sub-nav-bar" style={{
+          display: 'flex', justifyContent: 'center', gap: '0.4rem', padding: '0.5rem', backgroundColor: '#111', borderBottom: '1px solid rgba(255,255,255,0.05)'
+        }}>
+          {Object.keys(sections[activeSection].subSections).map(sub => (
+            <button 
+              key={sub}
+              onClick={() => navTo(activeSection, sub)}
+              style={{
+                padding: '0.5rem 1.25rem', borderRadius: '0.25rem', border: 'none',
+                backgroundColor: activeSubSection === sub ? 'var(--primary-red)' : 'transparent',
+                color: activeSubSection === sub ? 'white' : 'rgba(255,255,255,0.6)',
+                fontSize: '0.85rem', fontWeight: '800', textTransform: 'uppercase', cursor: 'pointer', transition: 'all 0.2s'
+              }}
+            >
+              {sections[activeSection].subSections[sub].title}
+            </button>
+          ))}
+        </nav>
+      )}
 
       <div className="upwp-layout-body">
         {/* LEVEL 3: SIDEBAR (CATEGORIES) */}
         <aside className="upwp-sidebar" style={{
-          width: '300px', backgroundColor: 'var(--primary-red)', color: 'white', display: 'flex', flexDirection: 'column', paddingTop: '1.5rem', boxShadow: '4px 0 15px rgba(0,0,0,0.2)'
+          width: '300px', backgroundColor: 'var(--primary-red)', color: 'white', display: 'flex', flexDirection: 'column', paddingTop: '0.5rem', boxShadow: '4px 0 15px rgba(0,0,0,0.2)'
         }}>
           <div className="upwp-sidebar-section-title">CATEGORIES</div>
           <div className="upwp-sidebar-subnav">
