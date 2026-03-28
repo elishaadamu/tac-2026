@@ -291,20 +291,11 @@ const FY27UPWP = () => {
           categories: {
             'Certification-Review': (
               <div className="upwp-section">
-                <header className="upwp-section-header"><h3 className="upwp-section-title">Certification Review Update</h3></header>
+                <header className="upwp-section-header"><h3 className="upwp-section-title">Certification Review Update Information</h3></header>
                 <div className="upwp-card">
-                  <h4 style={{color: 'var(--primary-yellow)', marginBottom: '1rem'}}>10) Certification Review Update Information</h4>
-                  <div className="upwp-highlight-box" style={{backgroundColor: 'rgba(245, 158, 11, 0.05)', borderColor: 'var(--primary-yellow)'}}>
-                    <p style={{color: 'var(--text-main)', margin: 0}}>Federal certification review of the metropolitan transportation planning process to ensure compliance with federal regulations.</p>
+                  <div style={{color: 'var(--text-main)', marginBottom: '1.25rem', fontSize: '1.1rem', fontWeight: '700'}}>
+                    Draft MTIP & Regional Conformity Report Public Comment Period – Att. 5 Information
                   </div>
-                </div>
-              </div>
-            ),
-            'Public-Comment-Period': (
-              <div className="upwp-section">
-                <header className="upwp-section-header"><h3 className="upwp-section-title">Public Comment Period</h3></header>
-                <div className="upwp-card">
-                  <h4 style={{color: 'var(--primary-yellow)', marginBottom: '1.5rem'}}>11) Draft MTIP & Regional Conformity Report – Att. 5 Information</h4>
                   <div className="upwp-highlight-box" style={{marginBottom: '1.5rem'}}>
                     a) The Public Comment Period started <strong>March 13, 2026</strong>, and ends <strong>April 12, 2026</strong>
                   </div>
